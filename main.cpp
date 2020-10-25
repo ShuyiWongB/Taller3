@@ -20,8 +20,30 @@ void participantes();
 
 int main()
 {
+    /**
+     * 
+     * linea se usará para quitar los titulos
+     * equipo guardará el nombre de cada equipo
+     * comuna guardará el nombre de cada comuna
+     * estadio guardará el nombre de cada estadio
+     * latitud guardará el nombre de cada latitud
+     * longitud guardará el nombre de cada longitud
+     */ 
     string linea,equipo,comuna,estadio,latitud,longitud;
+    /**
+     * vectorEquipo es un vector donde se guardarán todos los nombres de los equipos
+     * vectorComuna es un vector donde se guardarán todos los nombres de las comunas
+     * vectorEstadio es un vector donde se guardarán todos los nombres de los estadios
+     * vectorLatitud es un vector donde se guardarán todas las Latitudes
+     * VectorLongitud es un vector donde se guardarán todas las Longitudes
+     */
     vector<string> vectorEquipo,vectorComuna,vectorEstadio,vectorLatitud,vectorLongitud;
+    /**
+     * 
+     * vectorLatitudInt Vector donde alojaremos las latitudes transformadas a double
+     * vectorLongitudInt Vector donde alojaremos las longitudes transformadas a double
+     * 
+     */
     vector<double> vectorLatitudInt,vectorLongitudInt;
 
     // **
@@ -112,6 +134,13 @@ int main()
     return 0;
 }
 
+/**
+ * @latitud1 latitud del local
+ * @longitud1 longitud del local
+ * @latitud2 latitud del visitante
+ * @longitud2 longitud del visitante
+ * esta funcion retorna la distancia existente entre el local y el visitante
+ */
 double haversine(double latitud1, double longitud1, double latitud2, double longitud2) 
     { 
     double distLat = (latitud2 - latitud1) * PI / 180.0; 
