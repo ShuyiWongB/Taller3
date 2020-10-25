@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <cmath> 
+#include "omp.h"
 #define PI 3.14159265358979323846
 
 using namespace std;
@@ -28,11 +29,17 @@ int main()
 
     ifstream archivo;
     archivo.open("equipos.csv");
-
+#pragma omp parallel
+    {
+#pragma omp single 
+        {
     getline(archivo,linea); // Q U I T A T Í T U L O S
     
+#pragma omp task
+            {
+
     while(archivo.good())
-    {
+        {
         getline(archivo, equipo, ';');
         vectorEquipo.push_back(equipo);
 
@@ -47,7 +54,7 @@ int main()
 
         getline(archivo, longitud, '\n');
         vectorLongitud.push_back(longitud);
-    }
+            }
 
     for (int a = 0; a < 17; a++){
         string LAT = vectorLatitud[a].substr(1,vectorLongitud[a].length());
@@ -74,10 +81,10 @@ int main()
         fechas[i]=i+1;
     }
 
-    
     double Latitud1,Latitud2,Longitud1,Longitud2;
     float aux;
 
+#pragma omp critical
     string partidos[17][153][2];
     int k=0;
     for(int i=0;i<17;i++)
@@ -97,6 +104,9 @@ int main()
             k++;}
         }
         archivoFixture << endl;
+                }
+            }
+        }
     }
 
     return 0;
